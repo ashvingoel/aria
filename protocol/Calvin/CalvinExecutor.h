@@ -122,7 +122,9 @@ public:
     LOG(INFO) << "Worker " << id << " latency: " << percentile.nth(50)
               << " us (50%) " << percentile.nth(75) << " us (75%) "
               << percentile.nth(95) << " us (95%) " << percentile.nth(99)
-              << " us (99%).";
+              << " us (99%)."
+	      << " total latency: " << percentile.total()
+	      << " transactions: " << percentile.size();
   }
 
   void push_message(Message *message) override { in_queue.push(message); }

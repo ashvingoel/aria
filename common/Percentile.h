@@ -21,18 +21,26 @@ public:
   void add(const element_type &value) {
     isSorted_ = false;
     data_.push_back(value);
+    sum = sum + value;
   }
 
   void add(const std::vector<element_type> &v) {
     isSorted_ = false;
     std::copy(v.begin(), v.end(), std::back_inserter(data_));
+    for (auto & n : v) {
+	    sum += n;
+    }
   }
 
   void clear() {
     isSorted_ = true;
     data_.clear();
+    sum = 0;
   }
 
+  // total latency	
+  auto total() { return sum; }
+	
   auto size() { return data_.size(); }
 
   element_type nth(double n) {
@@ -90,5 +98,6 @@ private:
 private:
   bool isSorted_ = true;
   std::vector<element_type> data_;
+  element_type sum = 0;
 };
 } // namespace aria
